@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir -p dist
           cp -r assets dist/
+          cp robots.txt sitemap.xml dist/
 
           # Only substitute our own placeholders, so CSS/JS containing "$" stays untouched
           VARS='$SITE_NAME $SITE_STREET $SITE_ZIP $SITE_CITY $SITE_PHONE_TEL $SITE_PHONE_DISPLAY $SITE_EMAIL'
