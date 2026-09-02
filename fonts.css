@@ -1,0 +1,63 @@
+/*
+  Self-hosted fonts (replacing the Google Fonts CDN).
+  Files sourced from the Fontsource project (OFL-licensed mirrors of the
+  same Google Fonts), so the visual result is identical — the only change
+  is that browsers no longer connect to fonts.googleapis.com/fonts.gstatic.com,
+  which removes the IP-address transfer to Google entirely.
+*/
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/karla-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/karla-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/karla-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/poppins-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/poppins-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('fonts/poppins-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Alex Brush';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/alex-brush-latin-400-normal.woff2') format('woff2');
+}
