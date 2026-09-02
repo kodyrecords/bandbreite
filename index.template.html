@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bandbreite – Live-Musik aus Hünxe für besondere Momente</title>
+<meta name="description" content="Bandbreite ist eine akustische Coverband aus Hünxe für Hochzeiten, Gottesdienste, Gartenpartys und Feiern jeder Art.">
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+
+  :root {
+    --bg: #f7ebd6;
+    --bg-panel: #f0e2c6;
+    --bg-panel-2: #ead9b8;
+    --dark: #3a2f2a;
+    --tan: #8c6b4f;
+    --gold: #ba934f;
+    --gold-strong: #9c7940;
+    --line: #d1c6b2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'Karla', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    color: var(--dark);
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(247, 235, 214, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .brand img {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+
+  .brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+
+  .brand-name em {
+    font-family: 'Alex Brush', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--tan);
+    margin-left: 1px;
+  }
+
+  .brand-place {
+    font-size: 0.78rem;
+    color: var(--tan);
+    margin-left: 2px;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 28px;
+    font-size: 0.95rem;
+  }
+
+  .site-nav a {
+    text-decoration: none;
+    color: var(--tan);
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .site-nav a:hover {
+    color: var(--dark);
+  }
+
+  @media (max-width: 560px) {
+    .site-nav { gap: 14px; font-size: 0.82rem; }
+    .brand-place { display: none; }
+  }
+
+  @media (max-width: 400px) {
+    .site-nav { gap: 10px; font-size: 0.74rem; }
+    .brand img { height: 20px; }
+    .brand-name { font-size: 0.9rem; }
+    .brand-name em { font-size: 1.25rem; }
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 52px 0 56px;
+    position: relative;
+  }
+
+  .hero-icon {
+    max-width: 340px;
+    width: 60%;
+    height: auto;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: rise-in 0.9s ease-out 0.1s forwards;
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 6.4vw, 4.1rem);
+    line-height: 1;
+    opacity: 0;
+    animation: rise-in 0.9s ease-out 0.28s forwards;
+  }
+
+  .hero h1 em {
+    font-family: 'Alex Brush', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.35em;
+    color: var(--tan);
+    margin-left: 0.05em;
+  }
+
+  .hero-tagline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    color: var(--tan);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    opacity: 0;
+    animation: rise-in 0.9s ease-out 0.42s forwards;
+  }
+
+  .hero-tagline::before,
+  .hero-tagline::after {
+    content: "";
+    height: 1px;
+    width: 40px;
+    background: var(--line);
+    flex: none;
+  }
+
+  @media (max-width: 420px) {
+    .hero-tagline {
+      gap: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+    }
+    .hero-tagline::before,
+    .hero-tagline::after {
+      width: 20px;
+    }
+  }
+
+  .hero-lede {
+    max-width: 46ch;
+    color: var(--dark);
+    opacity: 0.78;
+    margin-top: 24px;
+    font-size: 1.08rem;
+    opacity: 0;
+    animation: rise-in 0.9s ease-out 0.56s forwards;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 22px;
+    opacity: 0;
+    animation: rise-in 0.9s ease-out 0.7s forwards;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--bg);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 13px 28px;
+    border-radius: 3px;
+    font-size: 0.98rem;
+    transition: background 0.15s ease;
+  }
+
+  .btn:hover {
+    background: var(--gold-strong);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    color: var(--tan);
+    text-decoration: none;
+    font-size: 0.98rem;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+
+  .btn-ghost:hover {
+    color: var(--dark);
+    border-color: var(--tan);
+  }
+
+  /* ---------- Section shared ---------- */
+
+  section {
+    padding: 44px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-head {
+    max-width: 52ch;
+    margin-bottom: 28px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.05rem);
+  }
+
+  .section-head p {
+    color: var(--tan);
+    margin-top: 14px;
+    font-size: 1.02rem;
+  }
+
+  /* ---------- Sound / Besetzung ---------- */
+
+  .sound-copy p {
+    color: var(--dark);
+    opacity: 0.82;
+    max-width: 52ch;
+  }
+
+  .sound-copy p + p {
+    margin-top: 16px;
+  }
+
+  .besetzung-line {
+    margin-top: 34px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+  }
+
+  .besetzung-line span {
+    padding: 9px 20px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg-panel);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Repertoire ---------- */
+
+  .repertoire-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 2;
+    column-gap: 52px;
+  }
+
+  .repertoire-list li {
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .repertoire-list li:first-child,
+  .repertoire-list li:nth-child(2) {
+    border-top: 1px solid var(--line);
+  }
+
+  .repertoire-list .song {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .repertoire-list .artist {
+    color: var(--tan);
+    font-size: 0.88rem;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .repertoire-list { columns: 1; }
+    .repertoire-list li:nth-child(2) { border-top: none; }
+  }
+
+  /* ---------- Kontakt ---------- */
+
+  .kontakt-box { max-width: 520px; }
+
+  .kontakt-box p {
+    color: var(--dark);
+    opacity: 0.8;
+    max-width: 42ch;
+  }
+
+  .kontakt-details {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .kontakt-line {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    column-gap: 18px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kontakt-details .kontakt-line:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .kontakt-line dt {
+    color: var(--tan);
+    font-size: 0.85rem;
+  }
+
+  .kontakt-line dd {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .kontakt-line {
+      grid-template-columns: 1fr;
+      row-gap: 6px;
+    }
+  }
+
+  .kontakt-line a {
+    text-decoration: none;
+    color: var(--dark);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kontakt-line a:hover {
+    border-color: var(--gold);
+    color: var(--gold-strong);
+  }
+
+  .kontakt-sep {
+    color: var(--line);
+    margin: 0 8px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  footer p {
+    margin: 0;
+    color: var(--tan);
+    font-size: 0.85rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-legal a {
+    color: var(--tan);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  .footer-legal a:hover {
+    color: var(--dark);
+  }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-name">Band<em>breite</em></span>
+      <span class="brand-place">aus Hünxe</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#sound">Der Sound</a>
+      <a href="#repertoire">Repertoire</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <!-- Platzhalter: assets/icon.png durch dein eigenes Logo ersetzen -->
+    <img class="hero-icon" src="assets/icon.png" alt="Bandbreite Logo: Gitarre, Herzschlag-Linie und Mikrofon">
+    <h1>Band<em>breite</em></h1>
+    <p class="hero-tagline">Acoustic. Echt. Handgemacht.</p>
+    <p class="hero-lede">Ob Hochzeit, Gottesdienst oder Gartenparty – wir begleiten eure besonderen Anlässe mit Live-Musik.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#kontakt">Kontakt aufnehmen</a>
+      <a class="btn-ghost" href="#sound">Wer wir sind</a>
+    </div>
+  </div>
+</section>
+
+<section id="sound">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Der Sound</h2>
+    </div>
+    <div class="sound-copy">
+      <p>Bandbreite ist eine akustische Coverband aus Hünxe.</p>
+      <p>Die Besetzung wählen wir je nach Song und Anlass: mal reduziert auf Gesang und akustischer Gitarre, dann wieder mit vollem Klangbild inklusive Cajon und E-Gitarre.</p>
+      <div class="besetzung-line">
+        <span>Gesang</span>
+        <span>Gitarre</span>
+        <span>Cajon</span>
+        <span>E-Gitarre</span>
+        <span>Piano</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="repertoire">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Aus unserem Repertoire</h2>
+      <p>Eine kleine Auswahl aus unserem Programm:</p>
+    </div>
+    <ul class="repertoire-list">
+      <li><span class="song">An guten Tagen</span><span class="artist">Johannes Oerding</span></li>
+      <li><span class="song">80 Millionen</span><span class="artist">Max Giesinger</span></li>
+      <li><span class="song">Das Beste</span><span class="artist">Silbermond</span></li>
+      <li><span class="song">When You Say Nothing At All</span><span class="artist">Ronan Keating</span></li>
+      <li><span class="song">I Wanna Dance With Somebody</span><span class="artist">Whitney Houston</span></li>
+      <li><span class="song">Ohne Dich</span><span class="artist">Münchener Freiheit</span></li>
+      <li><span class="song">Shut Up and Dance</span><span class="artist">Walk the Moon</span></li>
+      <li><span class="song">Weiße Haare</span><span class="artist">Florian Künstler</span></li>
+      <li><span class="song">Wer wenn nicht wir</span><span class="artist">Vincent Weiss</span></li>
+      <li><span class="song">Danke für diesen guten Morgen</span><span class="artist">Martin Gotthard Schneider</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div class="kontakt-box">
+      <div class="section-head" style="margin-bottom: 0;">
+        <h2>Lust auf Live-Musik bei eurem Anlass?</h2>
+        <p>Ruft uns gerne an, oder schreibt uns per Mail oder WhatsApp – wir melden uns umgehend bei euch.</p>
+      </div>
+      <dl class="kontakt-details">
+        <div class="kontakt-line">
+          <dt>Phone/WhatsApp</dt>
+          <dd>
+            <a href="tel:${SITE_PHONE_TEL}">${SITE_PHONE_DISPLAY}</a>
+            <span class="kontakt-sep">·</span>
+            <a href="https://wa.me/${SITE_WHATSAPP_NUMBER}" target="_blank" rel="noopener">WhatsApp</a>
+          </dd>
+        </div>
+        <div class="kontakt-line">
+          <dt>E-Mail</dt>
+          <dd><a href="mailto:${SITE_EMAIL}">${SITE_EMAIL}</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Bandbreite · Hünxe</p>
+    <nav class="footer-legal">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

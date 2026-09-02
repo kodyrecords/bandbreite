@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz – Bandbreite</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+
+  :root {
+    --bg: #f7ebd6;
+    --bg-panel: #f0e2c6;
+    --dark: #3a2f2a;
+    --tan: #8c6b4f;
+    --gold: #ba934f;
+    --gold-strong: #9c7940;
+    --line: #d1c6b2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'Karla', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    color: var(--dark);
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(247, 235, 214, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .brand img {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+
+  .brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+
+  .brand-name em {
+    font-family: 'Alex Brush', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--tan);
+    margin-left: 1px;
+  }
+
+  .brand-place {
+    font-size: 0.78rem;
+    color: var(--tan);
+    margin-left: 2px;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 28px;
+    font-size: 0.95rem;
+  }
+
+  .site-nav a {
+    text-decoration: none;
+    color: var(--tan);
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .site-nav a:hover {
+    color: var(--dark);
+  }
+
+  @media (max-width: 560px) {
+    .site-nav { gap: 14px; font-size: 0.82rem; }
+    .brand-place { display: none; }
+  }
+
+  @media (max-width: 400px) {
+    .site-nav { gap: 10px; font-size: 0.74rem; }
+    .brand img { height: 20px; }
+    .brand-name { font-size: 0.9rem; }
+    .brand-name em { font-size: 1.25rem; }
+  }
+
+  /* ---------- Legal content ---------- */
+
+  .legal {
+    padding: 52px 0 64px;
+  }
+
+  .legal h1 {
+    font-size: clamp(2rem, 4.8vw, 2.7rem);
+  }
+
+  .legal-intro {
+    color: var(--tan);
+    margin-top: 14px;
+    max-width: 52ch;
+  }
+
+  .legal-block {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .legal-block:first-of-type {
+    margin-top: 44px;
+  }
+
+  .legal-block h2 {
+    font-size: 1.25rem;
+  }
+
+  .legal-block h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 24px;
+  }
+
+  .legal-block p,
+  .legal-block li {
+    color: var(--dark);
+    opacity: 0.85;
+    max-width: 62ch;
+    margin-top: 12px;
+  }
+
+  .legal-block ul {
+    padding-left: 20px;
+  }
+
+  .legal-block li {
+    margin-top: 6px;
+  }
+
+  .legal-block p:first-of-type {
+    margin-top: 16px;
+  }
+
+  .legal-block dl {
+    margin-top: 16px;
+  }
+
+  .legal-block dt {
+    color: var(--tan);
+    font-size: 0.85rem;
+    margin-top: 12px;
+  }
+
+  .legal-block dd {
+    margin: 2px 0 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+
+  .legal-block a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal-block a:hover {
+    color: var(--gold-strong);
+    border-color: var(--gold);
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0;
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  footer p {
+    margin: 0;
+    color: var(--tan);
+    font-size: 0.85rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-legal a {
+    color: var(--tan);
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+
+  .footer-legal a:hover {
+    color: var(--dark);
+  }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-name">Band<em>breite</em></span>
+      <span class="brand-place">aus Hünxe</span>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html#sound">Der Sound</a>
+      <a href="index.html#repertoire">Repertoire</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<section class="legal">
+  <div class="wrap">
+    <h1>Datenschutzerklärung</h1>
+    <p class="legal-intro">Stand: September 2026</p>
+
+    <div class="legal-block">
+      <h2>1. Verantwortlicher</h2>
+      <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+      <dl>
+        <dt>Name</dt>
+        <dd>${SITE_NAME}</dd>
+        <dt>Anschrift</dt>
+        <dd>${SITE_STREET}<br>${SITE_ZIP} ${SITE_CITY}</dd>
+        <dt>E-Mail</dt>
+        <dd><a href="mailto:${SITE_EMAIL}">${SITE_EMAIL}</a></dd>
+      </dl>
+    </div>
+
+    <div class="legal-block">
+      <h2>2. Hosting</h2>
+      <p>Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
+      <p>Beim Aufruf dieser Website erfasst GitHub Pages automatisch technische Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt, insbesondere:</p>
+      <ul>
+        <li>IP-Adresse</li>
+        <li>Datum und Uhrzeit der Anfrage</li>
+        <li>aufgerufene Seite und übertragene Datenmenge</li>
+        <li>Browsertyp und Betriebssystem</li>
+        <li>verweisende URL (Referrer)</li>
+      </ul>
+      <p>Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer technisch fehlerfreien und sicheren Bereitstellung der Website). Eine Zusammenführung dieser Daten mit anderen Datenquellen findet nicht statt.</p>
+      <p>Da GitHub, Inc. ein US-Unternehmen ist, findet dabei eine Datenverarbeitung in den USA statt. GitHub ist nach dem EU-U.S. Data Privacy Framework (DPF) zertifiziert, das von der EU-Kommission als angemessenes Datenschutzniveau anerkannt wurde. Weitere Informationen finden Sie in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>3. Schriftarten</h2>
+      <p>Diese Website nutzt Schriftarten (Karla, Poppins, Alex Brush), die lokal auf dem Server dieser Website eingebunden sind. Es findet keine Verbindung zu Servern von Google oder anderen Drittanbietern statt, es werden dabei keine Daten an Dritte übertragen.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>4. Kontaktaufnahme</h2>
+      <p>Wenn Sie mich per Telefon, E-Mail oder WhatsApp kontaktieren, werden die von Ihnen mitgeteilten Daten (z. B. Name, Telefonnummer, E-Mail-Adresse, Inhalt der Nachricht) ausschließlich zum Zweck der Bearbeitung Ihrer Anfrage gespeichert und verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertrags) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung Ihrer Anfrage).</p>
+      <p>Nutzen Sie den WhatsApp-Link auf dieser Website, öffnet sich die Anwendung von WhatsApp bzw. WhatsApp Ireland Ltd. (Meta). Für die dabei stattfindende Datenverarbeitung ist WhatsApp verantwortlich; es gilt die Datenschutzerklärung von WhatsApp.</p>
+      <p>Ihre Daten werden gelöscht, sobald sie für die Bearbeitung Ihrer Anfrage nicht mehr erforderlich sind, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>5. Keine Cookies, kein Tracking</h2>
+      <p>Diese Website setzt keine Cookies und keine Analyse- oder Trackingtools ein. Es findet keine Auswertung Ihres Nutzerverhaltens statt.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>6. Ihre Rechte</h2>
+      <p>Ihnen stehen gegenüber dem Verantwortlichen folgende Rechte bezüglich der Sie betreffenden personenbezogenen Daten zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      </ul>
+      <p>Ihnen steht zudem ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO), z. B. bei der für Sie zuständigen Landesdatenschutzbehörde.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Bandbreite · Hünxe</p>
+    <nav class="footer-legal">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
