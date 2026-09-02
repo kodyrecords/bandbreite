@@ -1,0 +1,55 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render templates with secret values
+        env:
+          SITE_NAME: ${{ secrets.SITE_NAME }}
+          SITE_STREET: ${{ secrets.SITE_STREET }}
+          SITE_ZIP: ${{ secrets.SITE_ZIP }}
+          SITE_CITY: ${{ secrets.SITE_CITY }}
+          SITE_PHONE_TEL: ${{ secrets.SITE_PHONE_TEL }}
+          SITE_PHONE_DISPLAY: ${{ secrets.SITE_PHONE_DISPLAY }}
+          SITE_EMAIL: ${{ secrets.SITE_EMAIL }}
+        run: |
+          mkdir -p dist
+          cp -r assets dist/
+
+          # Only substitute our own placeholders, so CSS/JS containing "$" stays untouched
+          VARS='$SITE_NAME $SITE_STREET $SITE_ZIP $SITE_CITY $SITE_PHONE_TEL $SITE_PHONE_DISPLAY $SITE_EMAIL'
+
+          for page in index impressum datenschutz; do
+            envsubst "$VARS" < "$page.template.html" > "dist/$page.html"
+          done
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
