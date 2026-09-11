@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bandbreite – Live-Musik aus Hünxe für besondere Momente</title>
-<meta name="description" content="Bandbreite ist eine akustische Coverband aus Hünxe für Hochzeiten, Gottesdienste, Gartenpartys und Feiern jeder Art.">
+<title>BANDbreite – Live-Musik aus Hünxe für besondere Momente</title>
+<meta name="description" content="BANDbreite ist eine akustische Coverband aus Hünxe für Hochzeiten, Gottesdienste, Gartenpartys und Feiern jeder Art.">
 <link rel="canonical" href="https://www.bandbreite-live.de/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Bandbreite – Akustik Coverband aus Hünxe">
+<meta property="og:title" content="BANDbreite – Akustik Coverband aus Hünxe">
 <meta property="og:description" content="Akustische Live-Musik für Hochzeiten, Gottesdienste, Gartenpartys und Feiern jeder Art – aus Hünxe, für die Region.">
 <meta property="og:url" content="https://www.bandbreite-live.de/">
 <meta property="og:image" content="https://www.bandbreite-live.de/assets/icon.png">
@@ -18,7 +18,7 @@
 {
   "@context": "https://schema.org",
   "@type": "MusicGroup",
-  "name": "Bandbreite",
+  "name": "BANDbreite",
   "genre": "Akustik-Coverband",
   "description": "Akustische Coverband aus Hünxe für Hochzeiten, Gottesdienste, Gartenpartys und Feiern jeder Art.",
   "url": "https://www.bandbreite-live.de/",
@@ -35,7 +35,8 @@
   "telephone": "+${SITE_PHONE_TEL}"
 }
 </script>
-<link rel="icon" href="assets/icon.png">
+<link rel="icon" href="assets/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts.css">
 <style>
 
@@ -176,16 +177,12 @@
   /* ---------- Hero ---------- */
 
   .hero {
-    padding: 52px 0 56px;
     position: relative;
-  }
-
-  .hero-logo {
-    max-width: 340px;
-    width: 60%;
-    height: auto;
-    opacity: 0;
-    animation: rise-in 0.9s ease-out 0.1s forwards;
+    padding: 110px 0 120px;
+    background:
+      linear-gradient(rgba(35, 27, 22, 0.62), rgba(35, 27, 22, 0.5)),
+      url('assets/hero-hochzeit.jpg') center 55%/cover no-repeat;
+    color: #f7ebd6;
   }
 
   @keyframes rise-in {
@@ -196,6 +193,7 @@
   .hero h1 {
     font-size: clamp(2.6rem, 6.4vw, 4.1rem);
     line-height: 1;
+    color: #fbf3e4;
     opacity: 0;
     animation: rise-in 0.9s ease-out 0.28s forwards;
   }
@@ -205,7 +203,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1.35em;
-    color: var(--tan);
+    color: #e7c98a;
     margin-left: 0.05em;
   }
 
@@ -214,11 +212,11 @@
     align-items: center;
     gap: 16px;
     margin-top: 24px;
-    color: var(--tan);
+    color: #e7dcc7;
     font-size: 0.82rem;
     letter-spacing: 0.18em;
     opacity: 0;
-    animation: rise-in 0.9s ease-out 0.42s forwards;
+    animation: rise-in 0.9s ease-out 0.1s forwards;
   }
 
   .hero-tagline::before,
@@ -226,7 +224,7 @@
     content: "";
     height: 1px;
     width: 40px;
-    background: var(--line);
+    background: rgba(255, 255, 255, 0.35);
     flex: none;
   }
 
@@ -244,12 +242,11 @@
 
   .hero-lede {
     max-width: 46ch;
-    color: var(--dark);
-    opacity: 0.78;
+    color: #f0e6d3;
     margin-top: 24px;
     font-size: 1.08rem;
     opacity: 0;
-    animation: rise-in 0.9s ease-out 0.56s forwards;
+    animation: rise-in 0.9s ease-out 0.42s forwards;
   }
 
   .hero-actions {
@@ -259,13 +256,13 @@
     align-items: center;
     gap: 12px 22px;
     opacity: 0;
-    animation: rise-in 0.9s ease-out 0.7s forwards;
+    animation: rise-in 0.9s ease-out 0.56s forwards;
   }
 
   .btn {
     display: inline-block;
-    background: var(--dark);
-    color: var(--bg);
+    background: #f7ebd6;
+    color: var(--dark);
     font-weight: 600;
     text-decoration: none;
     padding: 13px 28px;
@@ -275,22 +272,22 @@
   }
 
   .btn:hover {
-    background: var(--gold-strong);
+    background: #e7c98a;
   }
 
   .btn-ghost {
     display: inline-block;
-    color: var(--tan);
+    color: #f0e6d3;
     text-decoration: none;
     font-size: 0.98rem;
     white-space: nowrap;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-bottom: 2px;
   }
 
   .btn-ghost:hover {
-    color: var(--dark);
-    border-color: var(--tan);
+    color: #fff;
+    border-color: #fff;
   }
 
   /* ---------- Section shared ---------- */
@@ -337,6 +334,9 @@
   }
 
   .besetzung-line span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 9px 20px;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -344,6 +344,13 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  .besetzung-line svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    color: var(--tan);
   }
 
   /* ---------- Repertoire ---------- */
@@ -459,22 +466,31 @@
   }
 
   footer .wrap {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+    opacity: 0.85;
+    justify-self: center;
   }
 
   footer p {
     margin: 0;
     color: var(--tan);
     font-size: 0.85rem;
+    justify-self: start;
   }
 
   .footer-legal {
     display: flex;
     gap: 16px;
+    justify-self: end;
   }
 
   .footer-legal a {
@@ -487,6 +503,20 @@
     color: var(--dark);
   }
 
+  @media (max-width: 560px) {
+    footer .wrap {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 14px;
+    }
+
+    footer p,
+    .footer-logo,
+    .footer-legal {
+      justify-self: center;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -494,12 +524,13 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="#top">
-      <span class="brand-name">Band<em>breite</em></span>
+      <span class="brand-name">BAND<em>breite</em></span>
       <span class="brand-place">aus Hünxe</span>
     </a>
     <nav class="site-nav">
       <a href="#sound">Der Sound</a>
       <a href="#repertoire">Repertoire</a>
+      <a href="galerie.html">Galerie</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
   </div>
@@ -507,9 +538,8 @@
 
 <section class="hero" id="top">
   <div class="wrap">
-    <!-- Platzhalter: assets/logo.png durch dein eigenes Logo ersetzen -->
-    <img class="hero-logo" src="assets/logo.png" alt="Bandbreite Logo: Gitarre, Herzschlag-Linie und Mikrofon">
     <p class="hero-tagline">Acoustic. Echt. Handgemacht.</p>
+    <h1>BAND<em>breite</em></h1>
     <p class="hero-lede">Ob Hochzeit, Gottesdienst oder Gartenparty – wir begleiten eure besonderen Anlässe mit Live-Musik.</p>
     <div class="hero-actions">
       <a class="btn" href="#kontakt">Kontakt aufnehmen</a>
@@ -524,14 +554,58 @@
       <h2>Der Sound</h2>
     </div>
     <div class="sound-copy">
-      <p>Bandbreite ist eine akustische Coverband aus Hünxe.</p>
+      <p>BANDbreite ist eine akustische Coverband aus Hünxe.</p>
       <p>Die Besetzung wählen wir je nach Song und Anlass: mal reduziert auf Gesang und akustischer Gitarre, dann wieder mit vollem Klangbild inklusive Cajon und E-Gitarre.</p>
       <div class="besetzung-line">
-        <span>Gesang</span>
-        <span>Gitarre</span>
-        <span>Cajon</span>
-        <span>E-Gitarre</span>
-        <span>Piano</span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="2" width="6" height="11" rx="3"/>
+            <path d="M6 11a6 6 0 0012 0"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+            <line x1="8.5" y1="21" x2="15.5" y2="21"/>
+          </svg>
+          Gesang
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="17" r="4.3"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="10.2" y1="10" x2="10.2" y2="20"/>
+            <line x1="13.8" y1="10" x2="13.8" y2="20"/>
+            <line x1="12" y1="9.3" x2="12" y2="2.4"/>
+            <rect x="10.6" y="1" width="2.8" height="2.4" rx="0.6"/>
+            <line x1="10.6" y1="1.6" x2="9" y2="1.6"/>
+            <line x1="10.6" y1="2.8" x2="9" y2="2.8"/>
+          </svg>
+          Gitarre
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="3" width="12" height="18" rx="2"/>
+            <circle cx="12" cy="14" r="3"/>
+          </svg>
+          Cajon
+        </span>
+        <span>
+          <svg class="icon-egitarre" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+            <path d="M354.178,282.058c-22.11,14.417-47.05,9.41-67.511-8.107l-46.98,46.98l-43.208-43.208l54.932-54.932c-15.064-43.244,11.181-73.721,27.159-83.323c27.007-16.192,14.044-29.146,2.762-31.009c-15.256-2.5-36.08-0.148-56.818,18.004c-37.962,33.184-21.43,82.266-101.472,97.274C36.325,239.997-3.824,290.387,6.2,353.16c7.793,48.852,45.585,84.47,59.222,98.118c13.637,13.633,49.266,51.425,98.11,59.222c62.791,10.024,112.112-30.329,129.43-116.847c12.26-61.204,69.83-38.155,91.1-83.885C398.469,278.81,373.204,269.66,354.178,282.058z M129.516,439.753l-51.847-51.84l23.035-23.035l51.851,51.847L129.516,439.753z M172.002,397.278l-51.851-51.855l21.781-21.771l51.851,51.848L172.002,397.278z M209.266,360.003l-51.84-51.848l21.77-21.778l51.844,51.84L209.266,360.003z"/>
+            <polygon points="205.12,277.723 239.687,312.298 416.833,135.156 382.265,100.588"/>
+            <path d="M497.474,25.691c-11.928-11.932-30.032-13.175-40.426-2.774l-38.903,38.895c-10.396,10.408-30.129,30.129-30.129,30.129s10.016,10.016,23.054,23.042c27.362,27.37,41.738,22.14,58.349-3.773c9.417-34.767,20.435-34.693,30.832-45.086C510.649,55.731,509.41,37.637,497.474,25.691z"/>
+            <path d="M434.206,23.212c1.076,1.08,2.818,1.08,3.887,0.015L451.36,9.956c1.084-1.087,1.084-2.825,0-3.89L446.1,0.799c-1.069-1.066-2.804-1.066-3.891,0l-13.264,13.27c-1.069,1.073-1.069,2.826,0,3.891L434.206,23.212z"/>
+            <path d="M408.437,48.999c1.069,1.066,2.803,1.066,3.88,0l13.275-13.27c1.069-1.08,1.069-2.811,0-3.891l-5.26-5.252c-1.076-1.08-2.818-1.08-3.887,0l-13.274,13.27c-1.069,1.065-1.069,2.804,0.008,3.891L408.437,48.999z"/>
+            <path d="M382.654,74.764c1.076,1.072,2.818,1.072,3.891,0.015l13.27-13.278c1.069-1.08,1.069-2.811,0-3.884l-5.259-5.259c-1.076-1.08-2.818-1.08-3.887,0l-13.274,13.264c-1.07,1.08-1.07,2.803,0.007,3.891L382.654,74.764z"/>
+          </svg>
+          E-Gitarre
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="1.5"/>
+            <line x1="7.5" y1="6" x2="7.5" y2="13"/>
+            <line x1="12" y1="6" x2="12" y2="13"/>
+            <line x1="16.5" y1="6" x2="16.5" y2="13"/>
+          </svg>
+          Piano
+        </span>
       </div>
     </div>
   </div>
@@ -585,7 +659,8 @@
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Bandbreite · Hünxe</p>
+    <p>© 2026 BANDbreite · Hünxe</p>
+    <img class="footer-logo" src="assets/logo-icon.png" alt="BANDbreite Logo-Icon: Gitarre, Herzschlag-Linie und Mikrofon">
     <nav class="footer-legal">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>

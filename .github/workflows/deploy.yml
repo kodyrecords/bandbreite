@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - name: Render templates with secret values
         env:
@@ -37,9 +39,12 @@ jobs:
           # Only substitute our own placeholders, so CSS/JS containing "$" stays untouched
           VARS='$SITE_NAME $SITE_STREET $SITE_ZIP $SITE_CITY $SITE_PHONE_TEL $SITE_PHONE_DISPLAY $SITE_EMAIL'
 
-          for page in index impressum datenschutz; do
+          for page in index impressum datenschutz galerie; do
             envsubst "$VARS" < "$page.template.html" > "dist/$page.html"
           done
+
+      - name: Build gallery manifest (newest photo first)
+        run: python3 .github/scripts/build_gallery_manifest.py
 
       - uses: actions/upload-pages-artifact@v5
         with:
