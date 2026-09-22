@@ -194,6 +194,71 @@
     border-radius: 6px;
   }
 
+  /* ---------- Video tile (styled like a photo tile, links out, no embed) ---------- */
+
+  .gallery-video {
+    position: relative;
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .gallery-video img {
+    cursor: pointer;
+  }
+
+  .gallery-video .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    padding: 12px;
+    color: #f7ebd6;
+    background: linear-gradient(180deg, rgba(24,18,15,0.15) 0%, rgba(24,18,15,0.55) 100%);
+    pointer-events: none;
+    transition: background 0.15s ease;
+  }
+
+  .gallery-video .overlay svg {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+
+  .gallery-video .overlay-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  .gallery-video .overlay-time {
+    font-size: 0.78rem;
+    background: rgba(24, 18, 15, 0.55);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .gallery-video:hover .overlay {
+    background: linear-gradient(180deg, rgba(24,18,15,0.25) 0%, rgba(24,18,15,0.65) 100%);
+  }
+
+  .gallery-video .ext-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.68rem;
+    color: #f7ebd6;
+    background: rgba(24, 18, 15, 0.55);
+    padding: 2px 8px;
+    border-radius: 20px;
+    pointer-events: none;
+  }
+
   /* ---------- Lightbox ---------- */
 
   .lightbox {
@@ -368,21 +433,67 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
+  function renderPhoto(item) {
+    var img = document.createElement('img');
+    img.src = 'assets/galerie/' + item.file;
+    img.alt = 'Foto von BANDbreite';
+    img.loading = 'lazy';
+    img.addEventListener('load', function () { img.classList.add('is-loaded'); });
+    img.addEventListener('click', function () { openLightbox(img.src); });
+    return img;
+  }
+
+  function renderVideo(item) {
+    // Own placeholder/real image, plain outbound link, no embedded player,
+    // no thumbnail taken from the external video.
+    var link = document.createElement('a');
+    link.className = 'gallery-video';
+    link.href = item.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute(
+      'aria-label',
+      item.title + (item.time_range ? ', ' + item.time_range : '') + ' (opens in a new tab)'
+    );
+
+    var img = document.createElement('img');
+    img.src = 'assets/videos/' + item.image;
+    img.alt = 'Eigenes Foto, verlinkt zum TV-Beitrag';
+    img.loading = 'lazy';
+
+    var extBadge = document.createElement('span');
+    extBadge.className = 'ext-badge';
+    extBadge.setAttribute('aria-hidden', 'true');
+    extBadge.textContent = 'Externer Link ↗';
+
+    var overlay = document.createElement('span');
+    overlay.className = 'overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+      '<span class="overlay-title"></span>' +
+      (item.time_range ? '<span class="overlay-time"></span>' : '');
+    overlay.querySelector('.overlay-title').textContent = item.title;
+    if (item.time_range) {
+      overlay.querySelector('.overlay-time').textContent = item.time_range;
+    }
+
+    link.appendChild(img);
+    link.appendChild(extBadge);
+    link.appendChild(overlay);
+    return link;
+  }
+
   fetch('assets/galerie/manifest.json')
     .then(function (res) { return res.ok ? res.json() : []; })
-    .then(function (photos) {
-      if (!photos || !photos.length) {
+    .then(function (items) {
+      if (!items || !items.length) {
         empty.hidden = false;
         return;
       }
-      photos.forEach(function (photo) {
-        var img = document.createElement('img');
-        img.src = 'assets/galerie/' + photo.file;
-        img.alt = 'Foto von BANDbreite';
-        img.loading = 'lazy';
-        img.addEventListener('load', function () { img.classList.add('is-loaded'); });
-        img.addEventListener('click', function () { openLightbox(img.src); });
-        grid.appendChild(img);
+      items.forEach(function (item) {
+        var tile = item.type === 'video' ? renderVideo(item) : renderPhoto(item);
+        grid.appendChild(tile);
       });
     })
     .catch(function () {
