@@ -206,6 +206,10 @@
 
   .gallery-video img {
     cursor: pointer;
+    /* This tile's image is not faded in via the .is-loaded class like
+       the photo tiles are, so force it visible here — otherwise it
+       inherits ".gallery-grid img { opacity: 0 }" and never appears. */
+    opacity: 1;
   }
 
   .gallery-video .overlay {
