@@ -38,7 +38,7 @@ def load_videos():
     # silently breaking the sort or the frontend render.
     for entry in entries:
         entry["type"] = "video"
-        for required in ("image", "date", "url", "title"):
+        for required in ("image", "url", "title"):
             if not entry.get(required):
                 raise ValueError(f"video entry missing '{required}': {entry}")
         image_path = VIDEOS_DIR / entry["image"]
@@ -47,6 +47,10 @@ def load_videos():
                 f"videos.json references '{entry['image']}', "
                 f"but no such file exists in {VIDEOS_DIR}/"
             )
+        # Derive the sort date from the image's own git commit date,
+        # the same way photos get theirs — no manual date field needed,
+        # and it always matches whenever the video was actually added.
+        entry["date"] = added_date(image_path)
     return entries
 
 
