@@ -1,6 +1,7 @@
 """Scans assets/galerie for photos and assets/videos/videos.json for
 manually-dated video entries, merging both into a single
 dist/assets/galerie/manifest.json sorted newest first."""
+import datetime
 import json
 import pathlib
 import subprocess
@@ -49,9 +50,20 @@ def load_videos():
     return entries
 
 
+def sort_key(item):
+    # Compare as real, timezone-aware datetimes instead of raw strings —
+    # string comparison breaks as soon as two dates use different UTC
+    # offsets (e.g. a git commit at "+00:00" vs. a manual video date at
+    # "+02:00"), even though one is chronologically clearly the other.
+    date_str = item["date"]
+    if not date_str:
+        return datetime.datetime.min.replace(tzinfo=datetime.timezone.utc)
+    return datetime.datetime.fromisoformat(date_str)
+
+
 def main():
     items = load_photos() + load_videos()
-    items.sort(key=lambda item: item["date"], reverse=True)
+    items.sort(key=sort_key, reverse=True)
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps(items, indent=2))
