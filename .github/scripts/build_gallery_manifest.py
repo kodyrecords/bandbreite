@@ -1,10 +1,13 @@
-"""Scans assets/galerie for photos and writes dist/assets/galerie/manifest.json,
-sorted newest first by each file's earliest git commit date."""
+"""Scans assets/galerie for photos and assets/videos/videos.json for
+manually-dated video entries, merging both into a single
+dist/assets/galerie/manifest.json sorted newest first."""
 import json
 import pathlib
 import subprocess
 
 GALERIE_DIR = pathlib.Path("assets/galerie")
+VIDEOS_DIR = pathlib.Path("assets/videos")
+VIDEOS_FILE = VIDEOS_DIR / "videos.json"
 OUT_FILE = pathlib.Path("dist/assets/galerie/manifest.json")
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 
@@ -17,18 +20,45 @@ def added_date(path):
     return log[-1] if log else ""
 
 
-def main():
+def load_photos():
     items = []
     if GALERIE_DIR.exists():
         for f in sorted(GALERIE_DIR.glob("*")):
             if f.is_file() and f.suffix.lower() in IMAGE_EXTENSIONS:
-                items.append({"file": f.name, "date": added_date(f)})
+                items.append({"type": "photo", "file": f.name, "date": added_date(f)})
+    return items
 
+
+def load_videos():
+    if not VIDEOS_FILE.exists():
+        return []
+    entries = json.loads(VIDEOS_FILE.read_text())
+    # Basic validation so a malformed entry fails loudly instead of
+    # silently breaking the sort or the frontend render.
+    for entry in entries:
+        entry["type"] = "video"
+        for required in ("image", "date", "url", "title"):
+            if not entry.get(required):
+                raise ValueError(f"video entry missing '{required}': {entry}")
+        image_path = VIDEOS_DIR / entry["image"]
+        if not image_path.is_file():
+            raise FileNotFoundError(
+                f"videos.json references '{entry['image']}', "
+                f"but no such file exists in {VIDEOS_DIR}/"
+            )
+    return entries
+
+
+def main():
+    items = load_photos() + load_videos()
     items.sort(key=lambda item: item["date"], reverse=True)
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps(items, indent=2))
-    print(f"gallery manifest: {len(items)} photo(s)")
+
+    photo_count = sum(1 for i in items if i["type"] == "photo")
+    video_count = sum(1 for i in items if i["type"] == "video")
+    print(f"gallery manifest: {photo_count} photo(s), {video_count} video(s)")
 
 
 if __name__ == "__main__":
